@@ -7,6 +7,3 @@ function onControllerInput(event) {
   return (changingTextSize.style.fontSize = event.currentTarget.value + "px");
 }
 
-// function onControllerInput(event) {
-//     return (changingTextSize.style.fontSize = fontSizeController.value + "px");
-//   }

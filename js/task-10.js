@@ -4,36 +4,34 @@ function getRandomHexColor() {
     .padStart(6, 0)}`;
 }
 
+const inputNum = document.querySelector('#controls>input')
 const createBtn = document.querySelector("button[data-create");
-const addDiv = document.querySelector("#boxes");
 const destroyBtn = document.querySelector("button[data-destroy");
 const inputValue = document.querySelector("#controls>input");
-let amount = 0;
+const addDiv = document.querySelector("#boxes");
 
-createBtn.addEventListener("click", getInputValue);
+createBtn.addEventListener("click", createBoxes);
 destroyBtn.addEventListener("click", destroyBoxes);
 
-function getInputValue(event) {
-  amount = Number(inputValue.value);
-  console.log(amount);
-  createBoxes(amount);
-  function createBoxes(num) {
-    for (let i = 1; i <= amount; i += 1) {
-      const divToAdd = document.createElement("div");
-      divToAdd.style.width = `${30 + 10 * i}px`;
-      divToAdd.style.height = `${30 + 10 * i}px`;
-      divToAdd.style.backgroundColor = getRandomHexColor();
+// createBoxes(Number(inputNum.value));
+const amount = Number(inputNum.value)
 
-      addDiv.append(divToAdd);
-    }
-  }
-  console.log(addDiv);
+function createBoxes(amount) {
+  let elements = [];
+  for (let i = 1; i <= Number(inputNum.value); i += 1) {
+    const divToAdd = document.createElement("div");
+    divToAdd.style.width = `${30 + 10 * i}px`;
+    divToAdd.style.height = `${30 + 10 * i}px`;
+    divToAdd.style.backgroundColor = getRandomHexColor();
+    elements.push(divToAdd);
+  };
+  addDiv.append(...elements);
+    console.log(inputNum.value);
+    console.log(addDiv);
+  
 }
 
-function destroyBoxes() {
-  const numberOfChildren = addDiv.children.length;
-  for (let i = 1; i <= numberOfChildren; i += 1);
-  addDiv.lastChild.remove();
+function destroyBoxes(num) {
+boxes.innerHTML = '';
+inputNum.value = '';
 }
-
-// оптимизировать добавление всех новых дивов за одну операцию и упростить их удаление
